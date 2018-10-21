@@ -1,0 +1,8 @@
+<head>
+  <base href="/">
+</head>
+<div class="createAccountwrapper">
+  <input [(ngModel)]="user.ID" placeholder="userID" required/>
+  <input [(ngModel)]="user.password" placeholder="Password" required/>
+  <button (click)="CreateAccount()" routerLink="/login">Create</button>
+</div>
