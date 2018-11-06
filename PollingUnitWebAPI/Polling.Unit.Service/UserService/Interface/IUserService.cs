@@ -1,11 +1,9 @@
-﻿using Polling.Unit.Repository.UserDataRepository.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Polling.Unit.Repository.DataTransmittingObject;
 
 namespace Polling.Unit.Service.UserService.Interface
 {
     public interface IUserService
     {
+        UserDTO CreateAccount(string userName, string password);
     }
 }

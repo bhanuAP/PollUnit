@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Polling.Unit.Repository.UserDataRepository.Interface;
+﻿using Microsoft.AspNetCore.Mvc;
 using Polling.Unit.Service;
 using Polling.Unit.Service.UserService.Interface;
 
@@ -19,6 +12,14 @@ namespace Polling.Unit.WebAPI.Controllers
         public HomeController(IUserService service)
         {
             _service = service;
+        }
+
+        [HttpPost]
+        [ActionName("createAccount")]
+        public IActionResult CreateUser([FromBody] UserConfiguration userConfiguration)
+        {
+            var relustDTO = _service.CreateAccount(userConfiguration.ID, userConfiguration.Password);
+            return Ok(relustDTO);
         }
     }
 }

@@ -3,11 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polling.Unit.Service", "Polling.Unit\Polling.Unit.Service.csproj", "{989F039B-BA3B-414E-B971-7A85FFCB2224}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polling.Unit.Repository", "Polling.Unit.Repository\Polling.Unit.Repository.csproj", "{AD0767D0-B4FE-4AB2-8387-5C42D2D30FA2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polling.Unit.WebAPI", "Polling.Unit.WebAPI\Polling.Unit.WebAPI.csproj", "{F5BAFEC4-3DD9-48EE-BF90-8F95299056D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polling.Unit.Service", "Polling.Unit.Service\Polling.Unit.Service.csproj", "{852D1F8B-80C8-477E-953D-F1209E9F9CFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polling.Unit.Test", "Polling.Unit.Test\Polling.Unit.Test.csproj", "{76D037DB-F615-4677-9065-8575C89333AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Polling.Unit.Library", "Polling.Unit.Library", "{93BAE767-1771-4E41-8E5C-162DC1EFB48F}"
+	ProjectSection(SolutionItems) = preProject
+		User_Info.queries.txt = User_Info.queries.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{989F039B-BA3B-414E-B971-7A85FFCB2224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{989F039B-BA3B-414E-B971-7A85FFCB2224}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{989F039B-BA3B-414E-B971-7A85FFCB2224}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{989F039B-BA3B-414E-B971-7A85FFCB2224}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD0767D0-B4FE-4AB2-8387-5C42D2D30FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD0767D0-B4FE-4AB2-8387-5C42D2D30FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD0767D0-B4FE-4AB2-8387-5C42D2D30FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +30,14 @@ Global
 		{F5BAFEC4-3DD9-48EE-BF90-8F95299056D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5BAFEC4-3DD9-48EE-BF90-8F95299056D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5BAFEC4-3DD9-48EE-BF90-8F95299056D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{852D1F8B-80C8-477E-953D-F1209E9F9CFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852D1F8B-80C8-477E-953D-F1209E9F9CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852D1F8B-80C8-477E-953D-F1209E9F9CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852D1F8B-80C8-477E-953D-F1209E9F9CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76D037DB-F615-4677-9065-8575C89333AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76D037DB-F615-4677-9065-8575C89333AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76D037DB-F615-4677-9065-8575C89333AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76D037DB-F615-4677-9065-8575C89333AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

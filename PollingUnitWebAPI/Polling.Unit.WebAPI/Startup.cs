@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polling.Unit.Repository.Context;
 using Polling.Unit.Repository.UserDataRepository.Concrete;
 using Polling.Unit.Repository.UserDataRepository.Interface;
+using Polling.Unit.Service.UserService.Concrete;
 using Polling.Unit.Service.UserService.Interface;
 
 namespace Polling.Unit.WebAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", false, true).AddEnvironmentVariables();
+
+            this.Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -27,6 +27,10 @@ namespace Polling.Unit.WebAPI
         {
             services.AddCors();
             services.AddMvc();
+
+            var connectionString = Configuration["dbConnectionString"];
+            services.AddDbContext<PollingUnitContext>
+                (options => options.UseSqlServer(connectionString));
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserDataRepository, UserDataRepository>();

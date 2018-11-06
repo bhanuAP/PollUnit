@@ -1,10 +1,8 @@
-﻿using Polling.Unit.Repository.UserDataRepository.Interface;
+﻿using Polling.Unit.Repository.DataTransmittingObject;
+using Polling.Unit.Repository.UserDataRepository.Interface;
 using Polling.Unit.Service.UserService.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Polling.Unit.Service.UserService.Interface
+namespace Polling.Unit.Service.UserService.Concrete
 {
     public class UserService: IUserService
     {
@@ -13,6 +11,11 @@ namespace Polling.Unit.Service.UserService.Interface
         public UserService(IUserDataRepository dataService)
         {
             _dataService = dataService;
+        }
+
+        public UserDTO CreateAccount(string userName, string password)
+        {
+            return _dataService.CreateUser(userName, password);
         }
     }
 }
