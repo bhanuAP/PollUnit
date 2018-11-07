@@ -13,9 +13,9 @@ namespace Polling.Unit.Service.UserService.Concrete
             _dataService = dataService;
         }
 
-        public UserDTO CreateAccount(string userName, string password)
+        public void CreateAccount(string userName, string password)
         {
-            return _dataService.CreateUser(userName, password);
+            _dataService.CreateUser(userName, password);
         }
     }
 }

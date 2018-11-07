@@ -4,6 +4,6 @@ namespace Polling.Unit.Service.UserService.Interface
 {
     public interface IUserService
     {
-        UserDTO CreateAccount(string userName, string password);
+        void CreateAccount(string userName, string password);
     }
 }

@@ -15,25 +15,20 @@ namespace Polling.Unit.Repository.UserDataRepository.Concrete
             _dbContext = context;
         }
 
-        public UserDTO CreateUser(string userID, string password)
+        public void CreateUser(string userID, string password)
         {
             UserInfo userInfo = new UserInfo();
             userInfo.USER_NAME = userID;
             userInfo.PASSWORD = password;
-            UserDTO resultUserDto = new UserDTO();
-            resultUserDto.userName = userID;
-            resultUserDto.hasAccount = false;
             try
             {
                 _dbContext.USER_INFO.Add(userInfo);
                 _dbContext.SaveChanges();
-                resultUserDto.hasAccount = true;
             }
             catch (Exception e)
             {
                 throw new Exception("User Name Already Exists");
             }
-            return resultUserDto;
         }
     }
 }

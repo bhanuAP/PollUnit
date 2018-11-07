@@ -6,7 +6,7 @@ namespace Polling.Unit.Service
 {
     public class UserConfiguration
     {
-        public string ID { get; set; }
+        public string UserId { get; set; }
         public string Password { get; set; }
     }
 }

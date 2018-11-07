@@ -13,28 +13,15 @@ namespace Polling.Unit.Test.UserServiceTest
         {
             string userName = "Bhanu";
             string password = "xyz";
-            UserDTO userDTO = new UserDTO();
-            userDTO.userName = userName;
+            UserDTO userDto = new UserDTO();
+            userDto.userName = userName;
             Mock<IUserDataRepository> repository = new Mock<IUserDataRepository>();
-            repository.Setup(m => m.CreateUser(userName, password)).Returns(userDTO);
+            repository.Setup(m => m.CreateUser(userName, password)).Verifiable();
+
             UserService service = new UserService(repository.Object);
             service.CreateAccount(userName, password);
-            repository.Verify(m => m.CreateUser(userName, password), Times.Once);
-        }
 
-        [Fact]
-        public void ShouldReturnUserDtoWithUserNameForValidUser()
-        {
-            string userName = "Bhanu";
-            string password = "xyz";
-            UserDTO expectedDTO = new UserDTO();
-            expectedDTO.userName = userName;
-            expectedDTO.hasAccount = true;
-            Mock<IUserDataRepository> repository = new Mock<IUserDataRepository>();
-            repository.Setup(m => m.CreateUser(userName, password)).Returns(expectedDTO);
-            UserService service = new UserService(repository.Object);
-            UserDTO userDto = service.CreateAccount(userName, password);
-            userDto.Equals(expectedDTO);
+            repository.Verify(m => m.CreateUser(userName, password), Times.Once);
         }
     }
 }

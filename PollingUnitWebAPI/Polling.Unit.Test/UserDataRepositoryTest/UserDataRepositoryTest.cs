@@ -19,31 +19,12 @@ namespace Polling.Unit.Test.UserDataRepositoryTest
             var mockSet = new Mock<DbSet<UserInfo>>();
             var mockContext = new Mock<PollingUnitContext>(contextOptions);
             mockContext.Setup(m => m.USER_INFO).Returns(mockSet.Object);
-            UserDataRepository repository = new UserDataRepository(mockContext.Object);
 
+            UserDataRepository repository = new UserDataRepository(mockContext.Object);
             repository.CreateUser(userName, password);
             
             mockSet.Verify(m => m.Add(It.IsAny<UserInfo>()), Times.Once());
             mockContext.Verify(m => m.SaveChanges(), Times.Once());
-        }
-
-        [Fact]
-        public void ShouldReturnExpectedUserDTOAfterCreatingUserAccount()
-        {
-            string userName = "Bhanu";
-            string password = "abc";
-            UserDTO expectedDto = new UserDTO();
-            expectedDto.userName = userName;
-            expectedDto.hasAccount = true;
-            DbContextOptions<PollingUnitContext> contextOptions = new DbContextOptions<PollingUnitContext>();
-            var mockSet = new Mock<DbSet<UserInfo>>();
-            var mockContext = new Mock<PollingUnitContext>(contextOptions);
-            mockContext.Setup(m => m.USER_INFO).Returns(mockSet.Object);
-            UserDataRepository repository = new UserDataRepository(mockContext.Object);
-
-            UserDTO dto = repository.CreateUser(userName, password);
-
-            dto.Equals(expectedDto);
         }
     }
 }
