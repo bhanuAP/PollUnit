@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moq;
 using Polling.Unit.Repository.Context;
-using Polling.Unit.Repository.DataTransmittingObject;
 using Polling.Unit.Repository.DBTableObjects;
 using Polling.Unit.Repository.UserDataRepository.Concrete;
 using Xunit;

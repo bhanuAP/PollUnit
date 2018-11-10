@@ -1,9 +1,9 @@
-﻿using Polling.Unit.Repository.DataTransmittingObject;
+﻿using Polling.Unit.Service.DataTransmittingObject;
 
 namespace Polling.Unit.Service.UserService.Interface
 {
     public interface IUserService
     {
-        void CreateAccount(string userName, string password);
+        UserDTO CreateAccount(string userName, string password);
     }
 }

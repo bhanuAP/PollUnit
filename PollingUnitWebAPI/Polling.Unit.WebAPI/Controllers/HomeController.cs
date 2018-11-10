@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Polling.Unit.Service;
+using Polling.Unit.Service.DataTransmittingObject;
 using Polling.Unit.Service.UserService.Interface;
 
 namespace Polling.Unit.WebAPI.Controllers
@@ -21,16 +23,9 @@ namespace Polling.Unit.WebAPI.Controllers
         {
             string userId = userConfiguration.UserId;
             string password = userConfiguration.Password;
-            try
-            {
-                _service.CreateAccount(userId, password);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(302, Json(e.Message));
-            }
-
-            return Ok();
+            UserDTO userDto = _service.CreateAccount(userId, password);
+            string serializedObject = JsonConvert.SerializeObject(userDto);
+            return StatusCode(302, Json(serializedObject));
         }
     }
 }

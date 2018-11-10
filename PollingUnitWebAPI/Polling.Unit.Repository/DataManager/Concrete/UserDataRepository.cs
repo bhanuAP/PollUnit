@@ -1,7 +1,7 @@
 ﻿using Polling.Unit.Repository.Context;
-using Polling.Unit.Repository.DataTransmittingObject;
 using Polling.Unit.Repository.UserDataRepository.Interface;
 using System;
+using System.Net.Http;
 using Polling.Unit.Repository.DBTableObjects;
 
 namespace Polling.Unit.Repository.UserDataRepository.Concrete
