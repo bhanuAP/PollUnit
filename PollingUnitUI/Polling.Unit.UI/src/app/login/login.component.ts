@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../user.service';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,7 @@ export class LoginComponent {
   data: object;
   showError: string;
   password: string;
-  user = {
-    ID: "",
-    password: ""
-  }
+  user: User = new User();
 
   Login() {
     this.userService.login(this.user)

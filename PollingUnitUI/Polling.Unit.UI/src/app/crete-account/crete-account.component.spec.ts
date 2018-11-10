@@ -19,7 +19,8 @@ describe('CreateAccountComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be truthy', () => {
     expect(component).toBeTruthy();
   });
+  
 });

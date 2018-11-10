@@ -1,5 +1,5 @@
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './models/User';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,7 +8,7 @@ const requestOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-const baseUrl: string = 'http://localhost:52276';
+const baseUrl: string = 'http://localhost:52276/';
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +22,14 @@ export class UserService {
       map(data => data));
   }
 
-  public createAccount(userCredentials: User) {
+  public createAccount(userCredentials: User,  callback) {
     let requestUrl = baseUrl + '/createAccount';
-    return this.http.post(requestUrl, userCredentials, requestOptions).pipe(
-      map(data => {
-        alert(data)
-         return data;
-        }
-      ));
+    this.http.post(requestUrl, userCredentials, requestOptions)
+    .subscribe(() => {},
+      (response: HttpErrorResponse) => {
+        let resMessage = JSON.parse(response.error.value);
+        resMessage.statusCode = response.status;
+        callback(resMessage);
+    });
   }
 }
