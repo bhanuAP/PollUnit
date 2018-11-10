@@ -16,13 +16,13 @@ const baseUrl: string = 'http://localhost:52276/';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  public login(userCredentials: User): Observable<User> {
+  public login(userCredentials: User, callback) {
     let requestUrl = baseUrl + '/login';
-    return this.http.post<User>(requestUrl, userCredentials, requestOptions).pipe(
-      map(data => data));
+    return this.http.post<User>(requestUrl, userCredentials, requestOptions)
+    .subscribe();
   }
 
-  public createAccount(userCredentials: User,  callback) {
+  public createAccount(userCredentials: User, callback) {
     let requestUrl = baseUrl + '/createAccount';
     this.http.post(requestUrl, userCredentials, requestOptions)
     .subscribe(() => {},

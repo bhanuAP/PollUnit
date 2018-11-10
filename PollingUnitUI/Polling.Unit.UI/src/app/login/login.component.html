@@ -1,8 +1,20 @@
 <head>
-  <base href="/">
+  <base href="/login">
 </head>
 <div class="LoginWrapper">
-  <input [(ngModel)]="user.UserId" placeholder="userID" required/>
-  <input [(ngModel)]="user.Password" placeholder="Password" required/>
-  <button (click)="Login()">Login</button>
+  <h1>Create Account</h1>
+  <form [formGroup]="loginAccountForm" (ngSubmit)="Login()">
+    <div class="form-group">
+      <label for="userId">User Name:</label>
+      <input class="form-control" formControlName="userId">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" formControlName="password">
+    </div>
+    <button class="btn btn-default">Create</button>
+    <div *ngIf="invalidCredentials" class="error">
+      <div>{{message}}</div>
+    </div>
+  </form>
 </div>

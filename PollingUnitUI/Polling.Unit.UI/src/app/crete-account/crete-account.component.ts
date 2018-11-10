@@ -21,13 +21,6 @@ export class CreateAccountComponent implements OnInit {
     private userService : UserService
   ) { }
 
-  ngOnInit() {
-    this.createAccountForm = new FormGroup({
-      userId: new FormControl(),
-      password: new FormControl()
-    });
-  }
-
   createAccount() {
     this.user.UserId = this.createAccountForm.controls.userId.value;
     this.user.Password = this.createAccountForm.controls.password.value;
@@ -44,4 +37,11 @@ export class CreateAccountComponent implements OnInit {
     }
   }
 
+  ngOnInit() {
+    this.createAccountForm = new FormGroup({
+      userId: new FormControl(),
+      password: new FormControl()
+    });
+  }
+  
 }
