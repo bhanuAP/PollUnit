@@ -16,7 +16,7 @@ const baseUrl: string = 'http://localhost:52276/';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  public login(userCredentials: User, callback) {
+  public loginAccount(userCredentials: User, callback) {
     let requestUrl = baseUrl + '/login';
     return this.http.post<User>(requestUrl, userCredentials, requestOptions)
     .subscribe();

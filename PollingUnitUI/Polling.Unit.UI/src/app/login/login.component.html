@@ -2,7 +2,7 @@
   <base href="/login">
 </head>
 <div class="LoginWrapper">
-  <h1>Create Account</h1>
+  <h1>Login Account</h1>
   <form [formGroup]="loginAccountForm" (ngSubmit)="Login()">
     <div class="form-group">
       <label for="userId">User Name:</label>
@@ -12,7 +12,7 @@
       <label for="password">Password:</label>
       <input type="password" class="form-control" formControlName="password">
     </div>
-    <button class="btn btn-default">Create</button>
+    <button class="btn btn-default">Login</button>
     <div *ngIf="invalidCredentials" class="error">
       <div>{{message}}</div>
     </div>

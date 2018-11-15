@@ -27,5 +27,16 @@ namespace Polling.Unit.WebAPI.Controllers
             string serializedObject = JsonConvert.SerializeObject(userDto);
             return StatusCode(302, Json(serializedObject));
         }
+
+        [HttpPost]
+        [ActionName("loginAccount")]
+        public IActionResult LoginUser([FromBody] UserConfiguration userConfiguration)
+        {
+            string userId = userConfiguration.UserId;
+            string password = userConfiguration.Password;
+            UserDTO userDto = _service.LoginAccount(userId, password);
+            string serializedObject = JsonConvert.SerializeObject(userDto);
+            return StatusCode(302, Json(serializedObject));
+        }
     }
 }

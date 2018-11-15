@@ -1,7 +1,8 @@
 ﻿using Polling.Unit.Repository.Context;
 using Polling.Unit.Repository.UserDataRepository.Interface;
 using System;
-using System.Net.Http;
+using System.Collections.Generic;
+using System.Linq;
 using Polling.Unit.Repository.DBTableObjects;
 
 namespace Polling.Unit.Repository.UserDataRepository.Concrete
@@ -15,7 +16,7 @@ namespace Polling.Unit.Repository.UserDataRepository.Concrete
             _dbContext = context;
         }
 
-        public void CreateUser(string userID, string password)
+        public bool CreateUser(string userID, string password)
         {
             UserInfo userInfo = new UserInfo();
             userInfo.USER_NAME = userID;
@@ -24,10 +25,29 @@ namespace Polling.Unit.Repository.UserDataRepository.Concrete
             {
                 _dbContext.USER_INFO.Add(userInfo);
                 _dbContext.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
-                throw new Exception("User Name Already Exists");
+                return false;
+            }
+        }
+
+        public UserInfo GetUserInfo(string userID)
+        {
+            UserInfo userInfo = new UserInfo();
+            userInfo.USER_NAME = userID;
+            try
+            {
+                IEnumerable<UserInfo> users = _dbContext.USER_INFO
+                    .Where(tableValues => tableValues.USER_NAME == userID)
+                    .ToList();
+                _dbContext.SaveChanges();
+                return users.ToList().FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
     }

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Polling.Unit.Repository.UserDataRepository.Interface;
 using Polling.Unit.Service.UserService.Interface;
 using Newtonsoft.Json;
+using Polling.Unit.Repository.DBTableObjects;
 using Polling.Unit.Service.DataTransmittingObject;
 
 namespace Polling.Unit.Service.UserService.Concrete
@@ -17,31 +20,40 @@ namespace Polling.Unit.Service.UserService.Concrete
 
         public UserDTO CreateAccount(string userName, string password)
         {
-            try
+            bool createAccount = _dataService.CreateUser(userName, password);
+            UserDTO dto = new UserDTO();
+            dto.userName = userName;
+            if (createAccount)
             {
-                _dataService.CreateUser(userName, password);
-                UserDTO dto = new UserDTO();
-                dto.userName = userName;
-                dto.message = "Your Account Created";
+                dto.message = "Your Account Has Created";
                 dto.url = "/login";
                 return dto;
             }
-            catch (Exception e)
-            {
-                UserDTO dto = new UserDTO();
-                dto.userName = userName;
-                dto.message = e.Message;
-                dto.url = "/createAccount";
-                return dto;
-            }
+            dto.message = "User Name Already Exists";
+            dto.url = "/createAccount";
+            return dto;
         }
 
-        public class ResponseObject
+        public UserDTO LoginAccount(string userName, string password)
         {
-            public string message { get; set; }
-            public string url { get; set; }
-
-            public override string ToString() => "message: " + message + ", url: " + url;
+            UserInfo userInfo = _dataService.GetUserInfo(userName);
+            UserDTO dto = new UserDTO();
+            dto.userName = userName;
+            if (userInfo != null)
+            {
+                if (userInfo.PASSWORD == password)
+                {
+                    dto.url = "/home";
+                    dto.message = "Welcome!, " + userName;
+                    return dto;
+                }
+                dto.message = "User Name And Password Doesn't Match";
+                dto.url = "/login";
+                return dto;
+            }
+            dto.url = "/login";
+            dto.message = "User Name Doesn't Exists";
+            return dto;
         }
     }
 }
