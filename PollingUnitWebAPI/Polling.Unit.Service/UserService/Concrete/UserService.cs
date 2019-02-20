@@ -39,20 +39,20 @@ namespace Polling.Unit.Service.UserService.Concrete
             UserInfo userInfo = _dataService.GetUserInfo(userName);
             UserDTO dto = new UserDTO();
             dto.userName = userName;
-            if (userInfo != null)
-            {
-                if (userInfo.PASSWORD == password)
-                {
-                    dto.url = "/home";
-                    dto.message = "Welcome!, " + userName;
-                    return dto;
-                }
-                dto.message = "User Name And Password Doesn't Match";
-                dto.url = "/login";
-                return dto;
-            }
-            dto.url = "/login";
-            dto.message = "User Name Doesn't Exists";
+            //if (userInfo != null)
+            //{
+            //    if (userInfo.PASSWORD == password)
+            //    {
+            //        dto.url = "/home";
+            //        dto.message = "Welcome!, " + userName;
+            //        return dto;
+            //    }
+            //    dto.message = "User Name And Password Doesn't Match";
+            //    dto.url = "/login";
+            //    return dto;
+            //}
+            //dto.url = "/login";
+            //dto.message = "User Name Doesn't Exists";
             return dto;
         }
     }

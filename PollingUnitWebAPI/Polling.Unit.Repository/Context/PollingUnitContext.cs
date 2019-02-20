@@ -21,4 +21,3 @@ namespace Polling.Unit.Repository.Context
         }
     }
 }
-    

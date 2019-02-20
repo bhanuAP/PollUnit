@@ -14,7 +14,6 @@ namespace Polling.Unit.WebAPI
     {
         public static int Main(string[] args)
         {
-
             try
             {
                 BuildWebHost()
